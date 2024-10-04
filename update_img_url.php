@@ -1,5 +1,5 @@
 <?php
-    include("login_required");
+    include("login_required.php");
     include("dbconnect.php");
 
     $id = $_SESSION['userdata']['id'];
@@ -11,16 +11,17 @@
             $extensao = pathinfo ( $nome, PATHINFO_EXTENSION );
             $extensao = strtolower ( $extensao );
             if ( strstr ( '.jpg;.jpeg;.gif;.png', $extensao ) ) {
-                $novoNome = uniqid ( time () ) . '.' . $extensao;
+                $novoNome = $id . '.' . $extensao;
                 $destino = 'uploads/' . $novoNome;
          
                 move_uploaded_file( $arquivo_tmp, $destino);
             }
         }
         
-        $img_url = 'http://localhost/chathaus-site/'.$destino;    
+        $img_url = "./$destino";
+        $_SESSION['userdata']['imagem_url'] = $img_url;
 
-        $query = "UPDATE usuarios SET img_url = '$img_url' WHERE id = $id";
+        $query = "UPDATE usuarios SET imagem_url = '$img_url' WHERE id = $id";
 
         //Executa update
         $executa_update = mysqli_query($conn, $query);

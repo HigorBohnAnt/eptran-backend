@@ -28,6 +28,9 @@
     ?>
     </div>
 
+    <img src="<?php echo $_SESSION['userdata']['imagem_url'] ?>" alt="foto">
+    
+
     <p>Mudar Informações</p>
 
     <form action="process_update.php" method="post">

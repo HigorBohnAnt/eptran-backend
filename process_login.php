@@ -1,7 +1,7 @@
 <?php
-include "dbconnect.php";
-
 session_start();
+
+include "dbconnect.php";
 
 $email = $_POST["email"];
 $password = $_POST["senha"];
@@ -21,3 +21,5 @@ if (password_verify($password, $userdata['senha'])) {
         </script>";
     exit;
 }
+
+?>
